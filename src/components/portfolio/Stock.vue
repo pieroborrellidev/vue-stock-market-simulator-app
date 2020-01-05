@@ -38,6 +38,8 @@ export default {
     },
     computed: {
         insufficientQuantity() {
+            console.log("your quantity", this.quantity);
+            console.log("stocks", this.stock.quantity);
             return this.quantity > this.stock.quantity;
         }
     },
@@ -49,7 +51,6 @@ export default {
                 quantity: this.quantity
             }
             this.$store.dispatch('sellStocks', order);
-            this.quantity = 0;
         }
     }
 }
