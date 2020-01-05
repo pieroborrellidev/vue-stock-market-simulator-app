@@ -42,7 +42,7 @@ export default {
                 price: this.stock.price,
                 quantity: this.quantity
             };
-            console.log("ordered", order);
+            this.$store.dispatch('buyStock', order);
             this.quantity = 0;
         }
     }
