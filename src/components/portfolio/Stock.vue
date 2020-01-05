@@ -1,6 +1,6 @@
 <template>
     <div class="col-sm-6 col-md-4">
-        <div class="panel panel-success">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     {{ stock.name }}
@@ -18,7 +18,7 @@
                 <div class="pull-right">
                     <button 
                         class="btn btn-danger" 
-                        @click="sellStock"
+                        @click="sellStocks"
                     >Sell</button>
                 </div>
             </div>
@@ -35,13 +35,14 @@ export default {
         }
     },
     methods: {
-        sellStock() {
+        sellStocks() {
             const order = {
                 id: this.stock.id,
                 price: this.stock.price,
                 quantity: this.quantity
             }
             this.$store.dispatch('sellStocks', order);
+            this.quantity = 0;
         }
     }
 }
