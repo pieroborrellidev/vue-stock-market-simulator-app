@@ -7,7 +7,7 @@
 
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <router-link tag="li" to="/portfolio"><a>Portfolio</a></router-link>
+          <router-link tag="li" to="/portfolio" activeClass="active"><a>Portfolio</a></router-link>
           <router-link tag="li" to="/stocks" activeClass="active"><a>Stocks</a></router-link>
         </ul>
         <ul class="nav navbar-nav navbar-right">
