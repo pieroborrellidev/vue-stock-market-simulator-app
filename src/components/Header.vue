@@ -15,7 +15,7 @@
           <li>
             <a href="#" @click="endDay">End day</a>
           </li>
-          <li class="dropdown">
+          <li class="dropdown" :class="{ open: isDropdownOpened }" @click="isDropdownOpened = !isDropdownOpened">
             <a
               href="#"
               class="dropdown-toggle"
@@ -27,10 +27,10 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a href="#">Save data</a>
+                <a href="#" @click="saveData">Save data</a>
               </li>
               <li>
-                <a href="#">Load data</a>
+                <a href="#" @click="loadData">Load data</a>
               </li>
             </ul>
           </li>
@@ -44,15 +44,34 @@
   import { mapActions } from 'vuex'
 
   export default {
+    data() {
+      return {
+        isDropdownOpened: false
+      }
+    },
     computed: {
       funds() {
         return this.$store.getters.funds;
       }
     },
     methods: {
-      ...mapActions(['randomizeStocks']),
+      ...mapActions({
+        randomizeStocks: 'randomizeStocks',
+        fetchData: 'loadData'
+      }),
       endDay() {
         this.randomizeStocks();
+      },
+      saveData() {
+        const data = {
+          funds: this.$store.getters.funds,
+          stocksPortfolio: this.$store.getters.stocksPortfolio,
+          stocks: this.$store.getters.stocks
+        };
+        this.$http.put('data.json', data);
+      },
+      loadData() {
+        this.fetchData();
       }
     }
   }
