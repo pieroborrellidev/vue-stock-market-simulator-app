@@ -17,11 +17,12 @@
                         :class="{danger: insufficientQuantity}"/>
                 </div>
                 <div class="pull-right">
-                    <button 
-                        class="btn btn-danger" 
-                        @click="sellStocks"
-                        :disabled="insufficientQuantity || quantity <= 0"
-                    >{{ insufficientQuantity ? 'not enough' : 'Sell'}}</button>
+                    <button
+                            class="btn btn-danger"
+                            @click="sellStocks"
+                            :disabled="insufficientQuantity || quantity <= 0"
+                    >{{ insufficientQuantity ? 'Not enough' : 'Sell' }}
+                    </button>
                 </div>
             </div>
         </div>
@@ -38,10 +39,9 @@ export default {
     },
     computed: {
         insufficientQuantity() {
-            console.log("your quantity", this.quantity);
-            console.log("stocks", this.stock.quantity);
-            return this.quantity > this.stock.quantity;
-        }
+              return this.quantity > this.stock.quantity;
+
+          }
     },
     methods: {
         sellStocks() {
@@ -51,6 +51,7 @@ export default {
                 quantity: this.quantity
             }
             this.$store.dispatch('sellStocks', order);
+            this.quantity = 0;
         }
     }
 }

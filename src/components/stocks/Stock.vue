@@ -19,7 +19,7 @@
                 <div class="pull-right">
                     <button 
                         class="btn btn-success" 
-                        @click="buyStock" 
+                        @click="buyStock"
                         :disabled="insufficientFunds || quantity <= 0"
                     >{{ insufficientFunds ? 'Insufficient' : 'Buy' }}</button>
                 </div>
